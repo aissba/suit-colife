@@ -352,19 +352,19 @@ export default function LandingPage() {
         >
           <div className="rounded-2xl sm:rounded-3xl overflow-hidden bg-[#e8f5f0] flex flex-col sm:flex-row items-center gap-0">
 
-            {/* Left: badge + faces image */}
-            <div className="w-full sm:w-2/5 flex-shrink-0 bg-black/5">
+            {/* Image — centered square on mobile, fixed width column on desktop */}
+            <div className="w-full sm:w-2/5 flex-shrink-0 flex justify-center items-center bg-black/5 py-6 sm:py-0">
               <img
                 src="/reviews-collage.webp"
                 alt="Clients satisfaits et garantie remboursement"
-                className="w-full h-56 sm:h-full object-cover object-top sm:object-center"
+                className="w-52 h-52 sm:w-full sm:h-full object-contain sm:object-cover"
               />
             </div>
 
-            {/* Right: text + CTA */}
-            <div className="flex flex-col px-6 py-8 sm:px-10 sm:py-10 gap-4">
+            {/* Text + CTA — centered on mobile, left-aligned on desktop */}
+            <div className="flex flex-col items-center text-center sm:items-start sm:text-left px-6 py-6 sm:px-10 sm:py-10 gap-4 w-full">
               {/* Stars */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center justify-center sm:justify-start gap-2 flex-wrap">
                 <div className="flex">
                   {[1,2,3,4,5].map((s) => (
                     <Star key={s} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
@@ -381,7 +381,7 @@ export default function LandingPage() {
               </h2>
 
               {/* Body */}
-              <p className="text-sm sm:text-base text-gray-600 leading-relaxed max-w-md">
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed max-w-sm sm:max-w-md">
                 Et si vous ne l'aimez pas ? Vous serez remboursé. Mais c'est très peu probable.
                 Les commentaires de nos clients sont éloquents.
               </p>
@@ -389,7 +389,7 @@ export default function LandingPage() {
               {/* CTA */}
               <Button
                 size="lg"
-                className="mt-2 w-full sm:w-auto bg-gray-900 hover:bg-gray-800 active:bg-black text-white font-bold h-14 px-8 text-base rounded-xl shadow-lg group touch-manipulation"
+                className="mt-1 w-full sm:w-auto bg-gray-900 hover:bg-gray-800 active:bg-black text-white font-bold h-14 px-8 text-sm sm:text-base rounded-xl shadow-lg group touch-manipulation"
                 data-testid="button-guarantee-cta"
               >
                 Commandez maintenant et économisez 85%
