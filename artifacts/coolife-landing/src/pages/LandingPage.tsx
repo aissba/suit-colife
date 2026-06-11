@@ -464,6 +464,125 @@ export default function LandingPage() {
           ))}
         </div>
 
+        {/* Trustpilot Reviews Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mt-14 sm:mt-24 max-w-5xl mx-auto"
+        >
+          {/* Header */}
+          <div className="flex flex-col items-center gap-3 mb-8">
+            <div className="flex items-center gap-3 flex-wrap justify-center">
+              <img src="/trustpilot-logo.webp" alt="Trustpilot" className="h-7 sm:h-8 w-auto" />
+              <img src="/verified-company.webp" alt="Verified Company" className="h-6 sm:h-7 w-auto" />
+            </div>
+            <p className="text-lg sm:text-xl font-bold text-gray-900 text-center">
+              Sur la base de <span className="text-[#00b67a]">1 732 avis</span>
+            </p>
+
+            {/* Rating bars */}
+            <div className="w-full max-w-md space-y-2 mt-1">
+              {[
+                { label: "EXCELLENT", pct: 76, color: "#00b67a" },
+                { label: "GREAT",     pct: 20, color: "#73cf11" },
+                { label: "AVERAGE",   pct: 4,  color: "#dcdce6" },
+              ].map((bar) => (
+                <div key={bar.label} className="flex items-center gap-3 text-xs sm:text-sm">
+                  <span className="w-20 font-semibold text-gray-600 text-right flex-shrink-0">{bar.label}</span>
+                  <div className="flex-1 h-3 sm:h-3.5 rounded-full bg-gray-100 overflow-hidden">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: `${bar.pct}%` }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, ease: "easeOut" }}
+                      className="h-full rounded-full"
+                      style={{ backgroundColor: bar.color }}
+                    />
+                  </div>
+                  <span className="w-8 font-bold text-gray-700 flex-shrink-0">{bar.pct}%</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Review cards grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+            {[
+              {
+                name: "Lisa J.",
+                avatar: "/reviewer-lisa.webp",
+                stars: 5,
+                text: "J'ai récemment acheté la valise Coolife Luggage Suitcase Hardside Spinner, et elle a été un ajout fantastique à mon équipement de voyage.",
+                photo: "/review-luggage-white.png",
+              },
+              {
+                name: "Anna S.",
+                avatar: "/reviewer-anna.webp",
+                stars: 5,
+                text: "Je suis très impressionné par la valise Coolife Luggage Suitcase Hardside Spinner. La qualité de fabrication est exceptionnelle et il est clair que le design a fait l'objet de beaucoup de réflexion.",
+                photo: "/review-luggage-silver.png",
+              },
+              {
+                name: "Mia P.",
+                avatar: "/reviewer-mia.jpeg",
+                stars: 5,
+                text: "La valise Coolife Luggage Suitcase Hardside Spinner est rapidement devenue ma valise de prédilection pour tous mes voyages. Son design est élégant et moderne, et sa coque rigide offre une excellente protection à mes effets personnels.",
+                photo: "/review-luggage-open.png",
+              },
+            ].map((review, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow p-5 flex flex-col gap-4"
+              >
+                {/* Reviewer header */}
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex items-center gap-3">
+                    <img
+                      src={review.avatar}
+                      alt={review.name}
+                      className="w-10 h-10 rounded-full object-cover flex-shrink-0 ring-2 ring-gray-100"
+                    />
+                    <div>
+                      {/* Stars */}
+                      <div className="flex gap-0.5 mb-0.5">
+                        {Array.from({ length: review.stars }).map((_, s) => (
+                          <svg key={s} viewBox="0 0 24 24" className="w-3.5 h-3.5 fill-[#00b67a]">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                          </svg>
+                        ))}
+                      </div>
+                      <p className="font-bold text-gray-900 text-sm">{review.name}</p>
+                    </div>
+                  </div>
+                  {/* Posted on Trustpilot badge */}
+                  <div className="flex items-center gap-1 flex-shrink-0">
+                    <span className="text-[10px] text-gray-400 whitespace-nowrap">Posted on</span>
+                    <img src="/trustpilot-logo.webp" alt="Trustpilot" className="h-3.5 w-auto" />
+                  </div>
+                </div>
+
+                {/* Review text */}
+                <p className="text-gray-600 text-xs sm:text-sm leading-relaxed flex-1">{review.text}</p>
+
+                {/* Luggage photo */}
+                <div className="rounded-xl overflow-hidden bg-gray-50 h-40 sm:h-44">
+                  <img
+                    src={review.photo}
+                    alt="Valise Coolife"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
         {/* Guarantee / Social Proof Section */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
