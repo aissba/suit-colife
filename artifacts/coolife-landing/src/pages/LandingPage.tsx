@@ -341,6 +341,63 @@ export default function LandingPage() {
             </motion.div>
           ))}
         </div>
+
+        {/* Guarantee / Social Proof Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mt-12 sm:mt-20 mx-auto max-w-5xl"
+        >
+          <div className="rounded-2xl sm:rounded-3xl overflow-hidden bg-[#e8f5f0] flex flex-col sm:flex-row items-center gap-0">
+
+            {/* Left: badge + faces image */}
+            <div className="w-full sm:w-2/5 flex-shrink-0 bg-black/5">
+              <img
+                src="/reviews-collage.webp"
+                alt="Clients satisfaits et garantie remboursement"
+                className="w-full h-56 sm:h-full object-cover object-top sm:object-center"
+              />
+            </div>
+
+            {/* Right: text + CTA */}
+            <div className="flex flex-col px-6 py-8 sm:px-10 sm:py-10 gap-4">
+              {/* Stars */}
+              <div className="flex items-center gap-2">
+                <div className="flex">
+                  {[1,2,3,4,5].map((s) => (
+                    <Star key={s} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                  ))}
+                </div>
+                <span className="text-sm font-semibold text-gray-700">
+                  évalué à <strong>4,8/5</strong> sur plus de <strong>1000 avis</strong>
+                </span>
+              </div>
+
+              {/* Headline */}
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 leading-tight tracking-tight">
+                Des milliers de clients aiment les bagages Coolife
+              </h2>
+
+              {/* Body */}
+              <p className="text-sm sm:text-base text-gray-600 leading-relaxed max-w-md">
+                Et si vous ne l'aimez pas ? Vous serez remboursé. Mais c'est très peu probable.
+                Les commentaires de nos clients sont éloquents.
+              </p>
+
+              {/* CTA */}
+              <Button
+                size="lg"
+                className="mt-2 w-full sm:w-auto bg-gray-900 hover:bg-gray-800 active:bg-black text-white font-bold h-14 px-8 text-base rounded-xl shadow-lg group touch-manipulation"
+                data-testid="button-guarantee-cta"
+              >
+                Commandez maintenant et économisez 85%
+                <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </div>
+          </div>
+        </motion.div>
       </main>
 
       {/* Footer */}
