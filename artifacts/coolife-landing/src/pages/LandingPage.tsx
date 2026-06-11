@@ -355,9 +355,10 @@ export default function LandingPage() {
 
               <Button
                 size="lg"
-                className="w-full sm:w-auto h-14 px-8 bg-gray-900 hover:bg-gray-800 text-white font-bold rounded-2xl shadow-lg group text-sm sm:text-base touch-manipulation"
+                className="w-full sm:w-auto h-14 px-8 text-white font-bold rounded-2xl shadow-lg group text-sm sm:text-base touch-manipulation"
+                style={{ backgroundColor: "#1e2939" }}
               >
-                Commandez maintenant et économisez 85%
+                Commandez maintenant 85%
                 <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>
@@ -416,9 +417,10 @@ export default function LandingPage() {
 
                 <Button
                   size="lg"
-                  className="w-full h-13 bg-gray-900 hover:bg-gray-800 text-white font-bold rounded-xl shadow group text-sm touch-manipulation"
+                  className="w-full h-13 text-white font-bold rounded-xl shadow group text-sm touch-manipulation"
+                  style={{ backgroundColor: "#1e2939" }}
                 >
-                  Achetez maintenant et économisez 85%
+                  Commandez maintenant 85%
                   <ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </div>
@@ -509,7 +511,8 @@ export default function LandingPage() {
               {/* CTA */}
               <Button
                 size="lg"
-                className="mt-1 w-full sm:w-auto bg-gray-900 hover:bg-gray-800 active:bg-black text-white font-bold h-14 px-8 text-sm sm:text-base rounded-xl shadow-lg group touch-manipulation"
+                className="mt-1 w-full sm:w-auto text-white font-bold h-14 px-8 text-sm sm:text-base rounded-xl shadow-lg group touch-manipulation"
+                style={{ backgroundColor: "#1e2939" }}
                 data-testid="button-guarantee-cta"
               >
                 Commandez maintenant 85%
