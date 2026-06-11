@@ -288,9 +288,7 @@ export default function LandingPage() {
             </div>
             <div className="space-y-3 text-amber-900 leading-relaxed min-w-0">
               <p className="text-sm sm:text-base font-medium">Nous proposons notre stock de 2025 Coolife Luggage Suitcase à un prix réduit. Cette décision nous permet de nous conformer aux politiques de l'entreprise et d'éviter des amendes potentielles de la part de Coolife. Profitez de cette opportunité jusqu'à épuisement des stocks !</p>
-              <p className="text-sm sm:text-base opacity-90">
-                Cette offre est une excellente occasion d'acheter un ensemble Coolife Luggage Suitcase au prix habituel. De plus, la garantie de 30 jours reste valable au cas où le MFP ne fonctionnerait pas comme décrit.
-              </p>
+              <p className="text-sm sm:text-base opacity-90">Cette offre est une excellente occasion d'acheter un ensemble Coolife Luggage Suitcase au prix habituel. De plus, la garantie de 30 jours reste valable au cas où le Coolife bagages ne fonctionnerait pas comme décrit.</p>
             </div>
           </div>
         </motion.div>
