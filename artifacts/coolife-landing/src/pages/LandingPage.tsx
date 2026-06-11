@@ -18,19 +18,12 @@ import {
 import { Button } from "@/components/ui/button";
 
 const IMAGES = [
-  "/luggage-white.png",
-  "/luggage-rose.png",
-  "/luggage-grey.png",
-  "/luggage-salmon.png",
-  "/luggage-navy.png",
-];
-
-const COLORS = [
-  { name: "Blanc", color: "#f8f9fa" },
-  { name: "Rose", color: "#e8c5c8" },
-  { name: "Gris", color: "#9aa0a6" },
-  { name: "Saumon", color: "#ffb4a2" },
-  { name: "Bleu Marine", color: "#2b3a4a" },
+  { src: "/coolife-hero.jpg", label: "Vue ensemble" },
+  { src: "/coolife-detail1.jpg", label: "Détail roues" },
+  { src: "/coolife-detail2.jpg", label: "Serrure TSA" },
+  { src: "/coolife-detail3.jpg", label: "Intérieur" },
+  { src: "/coolife-detail4.jpg", label: "Vue latérale" },
+  { src: "/coolife-detail5.jpg", label: "Poignée" },
 ];
 
 export default function LandingPage() {
@@ -115,42 +108,52 @@ export default function LandingPage() {
             animate={{ opacity: 1, y: 0 }}
             className="flex flex-col space-y-3 sm:space-y-4"
           >
-            {/* Main Image */}
-            <div className="relative aspect-square w-full rounded-xl sm:rounded-2xl bg-gray-50 overflow-hidden border border-gray-100">
+            {/* Main Image — premium card with deep shadow */}
+            <div className="relative aspect-square w-full rounded-2xl sm:rounded-3xl bg-[#f7f5f2] overflow-hidden"
+              style={{ boxShadow: "0 8px 40px 0 rgba(60,40,20,0.13), 0 1.5px 6px 0 rgba(0,0,0,0.07)" }}>
               <AnimatePresence mode="wait">
                 <motion.img
                   key={currentImgIndex}
-                  src={IMAGES[currentImgIndex]}
-                  initial={{ opacity: 0, scale: 0.97 }}
+                  src={IMAGES[currentImgIndex].src}
+                  initial={{ opacity: 0, scale: 1.03 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.25 }}
-                  alt="Ensemble de bagages"
-                  className="w-full h-full object-cover mix-blend-multiply"
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  alt={IMAGES[currentImgIndex].label}
+                  className="w-full h-full object-contain p-3 sm:p-5"
                 />
               </AnimatePresence>
 
-              {/* Arrows — always visible on mobile, hover-only on desktop */}
+              {/* Nav arrows */}
               <button
                 onClick={prevImg}
-                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 bg-white/90 hover:bg-white active:bg-white rounded-full flex items-center justify-center shadow-md transition-all lg:opacity-0 lg:group-hover:opacity-100"
+                className="absolute left-2 sm:left-3 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-11 sm:h-11 bg-white hover:bg-gray-50 active:scale-95 rounded-full flex items-center justify-center transition-all"
+                style={{ boxShadow: "0 2px 12px rgba(0,0,0,0.12)" }}
                 data-testid="button-gallery-prev"
                 aria-label="Image précédente"
               >
-                <ChevronLeft className="w-5 h-5 text-gray-800" />
+                <ChevronLeft className="w-5 h-5 text-gray-700" />
               </button>
               <button
                 onClick={nextImg}
-                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 bg-white/90 hover:bg-white active:bg-white rounded-full flex items-center justify-center shadow-md transition-all lg:opacity-0 lg:group-hover:opacity-100"
+                className="absolute right-2 sm:right-3 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-11 sm:h-11 bg-white hover:bg-gray-50 active:scale-95 rounded-full flex items-center justify-center transition-all"
+                style={{ boxShadow: "0 2px 12px rgba(0,0,0,0.12)" }}
                 data-testid="button-gallery-next"
                 aria-label="Image suivante"
               >
-                <ChevronRight className="w-5 h-5 text-gray-800" />
+                <ChevronRight className="w-5 h-5 text-gray-700" />
               </button>
 
-              <div className="absolute top-3 left-3 bg-white px-2.5 py-1 rounded-full text-xs font-bold shadow-sm flex items-center gap-1.5 border border-gray-100">
+              {/* "En stock" badge */}
+              <div className="absolute top-3 left-3 bg-white/95 backdrop-blur-sm px-2.5 py-1 rounded-full text-xs font-bold flex items-center gap-1.5 border border-green-100"
+                style={{ boxShadow: "0 1px 6px rgba(0,0,0,0.10)" }}>
                 <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
                 En stock
+              </div>
+
+              {/* Image label bottom-right */}
+              <div className="absolute bottom-3 right-3 bg-black/40 backdrop-blur-sm text-white text-[10px] font-semibold px-2 py-0.5 rounded-full tracking-wide">
+                {IMAGES[currentImgIndex].label}
               </div>
 
               {/* Dot indicators for mobile */}
@@ -159,43 +162,34 @@ export default function LandingPage() {
                   <button
                     key={idx}
                     onClick={() => setCurrentImgIndex(idx)}
-                    className={`w-1.5 h-1.5 rounded-full transition-all ${idx === currentImgIndex ? 'bg-primary w-4' : 'bg-white/70'}`}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${idx === currentImgIndex ? 'bg-white w-5' : 'bg-white/50 w-1.5'}`}
                     aria-label={`Image ${idx + 1}`}
                   />
                 ))}
               </div>
             </div>
 
-            {/* Thumbnails — hidden on mobile (using dots instead), shown on sm+ */}
-            <div className="hidden sm:flex items-center gap-2 sm:gap-3 overflow-x-auto pb-1">
+            {/* Thumbnails strip */}
+            <div className="hidden sm:flex items-center gap-2 sm:gap-2.5">
               {IMAGES.map((img, idx) => (
                 <button
                   key={idx}
                   onClick={() => setCurrentImgIndex(idx)}
                   data-testid={`button-thumbnail-${idx}`}
-                  className={`relative flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden border-2 transition-all duration-200 bg-gray-50 ${
-                    idx === currentImgIndex ? 'border-primary shadow-md scale-105' : 'border-transparent hover:border-gray-200'
+                  className={`relative flex-shrink-0 w-[72px] h-[72px] sm:w-20 sm:h-20 rounded-xl overflow-hidden transition-all duration-200 bg-[#f7f5f2] ${
+                    idx === currentImgIndex
+                      ? 'ring-2 ring-[#1a4b99] scale-105'
+                      : 'ring-1 ring-gray-200 hover:ring-gray-300 hover:scale-[1.03]'
                   }`}
+                  style={{ boxShadow: idx === currentImgIndex ? "0 4px 16px rgba(26,75,153,0.18)" : "0 1px 4px rgba(0,0,0,0.07)" }}
                 >
-                  <img src={img} alt={`Couleur ${idx + 1}`} className="w-full h-full object-cover mix-blend-multiply p-1" />
+                  <img
+                    src={img.src}
+                    alt={img.label}
+                    className="w-full h-full object-contain p-1.5"
+                  />
                 </button>
               ))}
-            </div>
-
-            {/* Color swatches */}
-            <div className="flex items-center gap-2 sm:gap-3">
-              <span className="text-xs sm:text-sm font-medium text-gray-500 flex-shrink-0">Couleur:</span>
-              <div className="flex gap-1.5 sm:gap-2">
-                {COLORS.map((color, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setCurrentImgIndex(idx)}
-                    title={color.name}
-                    className={`w-6 h-6 rounded-full border border-gray-200 shadow-sm transition-all ${idx === currentImgIndex ? 'scale-125 ring-2 ring-primary ring-offset-2' : 'hover:scale-110'}`}
-                    style={{ backgroundColor: color.color }}
-                  />
-                ))}
-              </div>
             </div>
           </motion.div>
 
