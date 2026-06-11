@@ -512,7 +512,7 @@ export default function LandingPage() {
                 className="mt-1 w-full sm:w-auto bg-gray-900 hover:bg-gray-800 active:bg-black text-white font-bold h-14 px-8 text-sm sm:text-base rounded-xl shadow-lg group touch-manipulation"
                 data-testid="button-guarantee-cta"
               >
-                Commandez maintenant et économisez 85%
+                Commandez maintenant 85%
                 <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>
