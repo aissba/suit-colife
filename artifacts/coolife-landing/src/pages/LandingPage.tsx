@@ -9,18 +9,13 @@ import {
   Lock,
   Plane,
   Truck,
-  CreditCard
+  CreditCard,
+  Menu,
+  Search,
+  Bell,
+  LayoutList
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-
-function AldiLogo({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 120 60" className={className} aria-label="ALDI" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <rect width="120" height="60" rx="6" fill="#1a4b99"/>
-      <text x="60" y="42" textAnchor="middle" fontFamily="Arial Black, Arial, sans-serif" fontWeight="900" fontSize="32" fill="white" letterSpacing="2">ALDI</text>
-    </svg>
-  );
-}
 
 const IMAGES = [
   "/luggage-white.png",
@@ -57,22 +52,58 @@ export default function LandingPage() {
     <div className="min-h-screen bg-white pb-20 lg:pb-0">
 
       {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white shadow-sm">
-        <div className="container mx-auto px-4 h-14 sm:h-16 flex items-center justify-between gap-3">
-          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
-            <AldiLogo className="h-8 sm:h-10 w-auto flex-shrink-0" />
-            <div className="flex items-center gap-1.5 border-l pl-2 sm:pl-3 ml-0.5 sm:ml-1 border-gray-200 flex-shrink-0">
-              <span className="text-base sm:text-xl leading-none">🇫🇷</span>
-              <span className="text-xs sm:text-sm font-medium text-gray-600 hidden xs:inline-block">France</span>
-            </div>
-          </div>
-          <Button 
-            className="bg-destructive hover:bg-destructive/90 text-white font-semibold shadow-md text-xs sm:text-sm px-3 sm:px-4 h-9 sm:h-10 hidden sm:flex whitespace-nowrap"
-            data-testid="button-header-cta"
-            onClick={() => window.scrollTo({ top: 500, behavior: 'smooth' })}
+      <header className="sticky top-0 z-50 w-full bg-white shadow-sm">
+        {/* Top bar: hamburger | logo | icons */}
+        <div className="px-3 sm:px-5 h-14 sm:h-16 flex items-center justify-between">
+          {/* Left: Hamburger */}
+          <button
+            className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 active:bg-gray-200 transition-colors flex-shrink-0"
+            data-testid="button-menu"
+            aria-label="Menu"
           >
-            Commander – économisez 85% →
-          </Button>
+            <Menu className="w-6 h-6 text-gray-700" />
+          </button>
+
+          {/* Center: ALDI logo */}
+          <div className="absolute left-1/2 -translate-x-1/2">
+            <img
+              src="/aldi-logo.svg"
+              alt="ALDI"
+              className="h-10 sm:h-12 w-auto"
+              data-testid="img-aldi-logo"
+            />
+          </div>
+
+          {/* Right: icons */}
+          <div className="flex items-center gap-1 flex-shrink-0">
+            <button
+              className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 active:bg-gray-200 transition-colors relative"
+              data-testid="button-notifications"
+              aria-label="Notifications"
+            >
+              <Bell className="w-5 h-5 text-gray-700" />
+              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-destructive rounded-full" />
+            </button>
+            <button
+              className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 active:bg-gray-200 transition-colors"
+              data-testid="button-offers-list"
+              aria-label="Liste des offres"
+            >
+              <LayoutList className="w-5 h-5 text-gray-700" />
+            </button>
+          </div>
+        </div>
+
+        {/* Search bar row */}
+        <div className="px-3 sm:px-5 pb-3">
+          <button
+            className="w-full flex items-center gap-3 bg-gray-100 hover:bg-gray-150 active:bg-gray-200 rounded-full px-4 py-2.5 transition-colors text-left"
+            data-testid="button-search"
+            onClick={() => window.scrollTo({ top: 300, behavior: 'smooth' })}
+          >
+            <Search className="w-4 h-4 text-gray-500 flex-shrink-0" />
+            <span className="text-sm text-gray-400 font-normal">Encuentra ofertas</span>
+          </button>
         </div>
       </header>
 
@@ -315,7 +346,7 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="bg-gray-900 text-gray-400 py-10 mt-12 sm:mt-16 border-t border-gray-800">
         <div className="container mx-auto px-4 flex flex-col items-center text-center space-y-4 sm:space-y-6">
-          <AldiLogo className="h-10 sm:h-12 w-auto opacity-40" />
+          <img src="/aldi-logo.svg" alt="ALDI" className="h-10 sm:h-12 w-auto opacity-40" />
           <p className="text-xs sm:text-sm max-w-md px-4">
             Offre promotionnelle limitée. Les prix et la disponibilité sont sujets à changement sans préavis.
             Copyright © {new Date().getFullYear()} ALDI / Coolife.
