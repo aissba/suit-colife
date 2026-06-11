@@ -305,22 +305,22 @@ export default function LandingPage() {
         </motion.div>
 
         {/* Features */}
-        <div className="mt-10 sm:mt-20 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-5xl mx-auto">
+        <div className="mt-10 sm:mt-20 grid grid-cols-3 gap-2 sm:gap-6 lg:gap-8 max-w-5xl mx-auto">
           {[
             {
               icon: Lock,
               title: "Serrure TSA",
-              desc: "Approuvée par les agents de sécurité pour voyager en toute tranquillité."
+              desc: "Approuvée par les agents de sécurité."
             },
             {
               icon: Plane,
-              title: "3 Tailles Incluses",
-              desc: "20'', 24'' et 28'' pour tous vos types de voyages."
+              title: "3 Tailles",
+              desc: "20'', 24'' et 28'' inclus."
             },
             {
               icon: Truck,
-              title: "Livraison Gratuite",
-              desc: "Livraison rapide et gratuite jusqu'à minuit aujourd'hui."
+              title: "Livraison",
+              desc: "Gratuite jusqu'à minuit."
             }
           ].map((feature, i) => (
             <motion.div
@@ -329,15 +329,13 @@ export default function LandingPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="flex sm:flex-col items-center sm:items-center sm:text-center gap-4 sm:gap-0 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-md transition-shadow"
+              className="flex flex-col items-center text-center gap-2 p-3 sm:p-6 rounded-xl sm:rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-md transition-shadow"
             >
-              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-xl sm:rounded-2xl shadow-sm flex items-center justify-center sm:mb-4 text-primary flex-shrink-0">
-                <feature.icon className="w-6 h-6 sm:w-7 sm:h-7" />
+              <div className="w-9 h-9 sm:w-14 sm:h-14 bg-white rounded-xl sm:rounded-2xl shadow-sm flex items-center justify-center text-primary flex-shrink-0">
+                <feature.icon className="w-4 h-4 sm:w-7 sm:h-7" />
               </div>
-              <div className="sm:text-center">
-                <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-0.5 sm:mb-2">{feature.title}</h3>
-                <p className="text-gray-600 text-xs sm:text-sm">{feature.desc}</p>
-              </div>
+              <h3 className="font-bold text-gray-900 text-xs sm:text-lg leading-tight">{feature.title}</h3>
+              <p className="text-gray-500 text-[10px] sm:text-sm leading-snug hidden sm:block">{feature.desc}</p>
             </motion.div>
           ))}
         </div>
