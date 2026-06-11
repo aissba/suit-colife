@@ -1,0 +1,32 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "feOeOmmiGL0SUcmB8b8Ma"
+uri = "file://artifacts/coolife-landing/public/luggage-white.png"
+type = "image"
+title = "Main white luggage set"
+
+[[generated]]
+id = "k1Xe8slUtpWaIuorVMQ9N"
+uri = "file://artifacts/coolife-landing/public/luggage-rose.png"
+type = "image"
+title = "Rose pink luggage set"
+
+[[generated]]
+id = "BzLmkomnxtP4qruwS2IPk"
+uri = "file://artifacts/coolife-landing/public/luggage-grey.png"
+type = "image"
+title = "Grey luggage set"
+
+[[generated]]
+id = "C1xYUXoCf7wI0Vkn6ZgZQ"
+uri = "file://artifacts/coolife-landing/public/luggage-salmon.png"
+type = "image"
+title = "Salmon luggage set"
+
+[[generated]]
+id = "eW2ZdpzYS04i581lVXy5L"
+uri = "file://artifacts/coolife-landing/public/luggage-navy.png"
+type = "image"
+title = "Navy luggage set"
