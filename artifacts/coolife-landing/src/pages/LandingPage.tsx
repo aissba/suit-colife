@@ -304,6 +304,128 @@ export default function LandingPage() {
           </div>
         </motion.div>
 
+        {/* Ergonomic Description Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mt-12 sm:mt-20 max-w-5xl mx-auto"
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
+            {/* Left: headline + features */}
+            <div className="space-y-6">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 leading-tight tracking-tight">
+                Conception ergonomique pour les déplacements et un soutien optimal
+              </h2>
+              <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
+                Fabriquée en polypropylène rigide, elle assure une excellente protection de vos objets tout en restant légère. Sa conception durable lui permet de résister aux chocs et aux rayures.
+              </p>
+
+              {/* Feature blocks */}
+              <div className="space-y-5">
+                {[
+                  {
+                    emoji: "🔒",
+                    title: "Serrure de haute qualité",
+                    body: "Équipé d'une serrure TSA, ce sac offre un niveau de sécurité élevé pour votre tranquillité d'esprit en voyage. La serrure permet aux bagages d'être inspectés par les autorités sans avoir à la briser."
+                  },
+                  {
+                    emoji: "🤝",
+                    title: "Construction de haute qualité",
+                    body: "Ces sacs Coolife sont conçus pour être suffisamment solides et fonctionnels pour répondre à toutes vos exigences en matière de voyage."
+                  }
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -16 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.12 }}
+                    className="flex gap-4 p-4 sm:p-5 rounded-2xl bg-gray-50 border border-gray-100 hover:border-primary/20 hover:bg-blue-50/40 transition-colors"
+                  >
+                    <span className="text-2xl flex-shrink-0 mt-0.5">{item.emoji}</span>
+                    <div>
+                      <p className="font-bold text-gray-900 text-sm sm:text-base mb-1">{item.title}</p>
+                      <p className="text-gray-500 text-xs sm:text-sm leading-relaxed">{item.body}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              <Button
+                size="lg"
+                className="w-full sm:w-auto h-14 px-8 bg-gray-900 hover:bg-gray-800 text-white font-bold rounded-2xl shadow-lg group text-sm sm:text-base touch-manipulation"
+              >
+                Commandez maintenant et économisez 85%
+                <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </div>
+
+            {/* Right: specs card */}
+            <motion.div
+              initial={{ opacity: 0, x: 16 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="rounded-2xl sm:rounded-3xl border border-gray-200 bg-white shadow-sm overflow-hidden"
+            >
+              {/* Specs header */}
+              <div className="flex items-center gap-3 px-5 py-4 bg-gray-900 text-white">
+                <span className="text-xl">🛡️</span>
+                <span className="font-bold text-sm sm:text-base tracking-wide uppercase">Spécifications avancées</span>
+              </div>
+
+              {/* Dimensions */}
+              <div className="p-5 space-y-4">
+                <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">
+                  Disponible en trois tailles différentes (20 / 24 / 28 pouces) pour répondre à vos différents besoins.
+                </p>
+
+                <div>
+                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Dimensions</p>
+                  <div className="divide-y divide-gray-100 rounded-xl overflow-hidden border border-gray-100">
+                    {[
+                      { size: "20″", dim: "55 × 40 × 20 cm" },
+                      { size: "24″", dim: "65 × 45 × 25 cm" },
+                      { size: "28″", dim: "75 × 50 × 30 cm" },
+                    ].map((row) => (
+                      <div key={row.size} className="flex items-center justify-between px-4 py-3 bg-gray-50 even:bg-white">
+                        <span className="text-sm font-semibold text-gray-700">{row.size}</span>
+                        <span className="text-sm text-gray-500 font-mono">{row.dim}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div>
+                  <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2">Poids</p>
+                  <div className="divide-y divide-gray-100 rounded-xl overflow-hidden border border-gray-100">
+                    {[
+                      { size: "20″", weight: "2,7 kg" },
+                      { size: "24″", weight: "3,5 kg" },
+                      { size: "28″", weight: "4,2 kg" },
+                    ].map((row) => (
+                      <div key={row.size} className="flex items-center justify-between px-4 py-3 bg-gray-50 even:bg-white">
+                        <span className="text-sm font-semibold text-gray-700">{row.size}</span>
+                        <span className="text-sm text-gray-500 font-mono">{row.weight}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <Button
+                  size="lg"
+                  className="w-full h-13 bg-gray-900 hover:bg-gray-800 text-white font-bold rounded-xl shadow group text-sm touch-manipulation"
+                >
+                  Achetez maintenant et économisez 85%
+                  <ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </div>
+            </motion.div>
+          </div>
+        </motion.div>
+
         {/* Features */}
         <div className="mt-10 sm:mt-20 grid grid-cols-3 gap-2 sm:gap-6 lg:gap-8 max-w-5xl mx-auto">
           {[
