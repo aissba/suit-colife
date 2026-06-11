@@ -44,116 +44,125 @@ export default function LandingPage() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 400) {
-        setIsStickyCTA(true);
-      } else {
-        setIsStickyCTA(false);
-      }
+      setIsStickyCTA(window.scrollY > 300);
     };
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const nextImg = () => {
-    setCurrentImgIndex((prev) => (prev + 1) % IMAGES.length);
-  };
-
-  const prevImg = () => {
-    setCurrentImgIndex((prev) => (prev - 1 + IMAGES.length) % IMAGES.length);
-  };
+  const nextImg = () => setCurrentImgIndex((prev) => (prev + 1) % IMAGES.length);
+  const prevImg = () => setCurrentImgIndex((prev) => (prev - 1 + IMAGES.length) % IMAGES.length);
 
   return (
-    <div className="min-h-screen bg-white pb-24 lg:pb-0">
+    <div className="min-h-screen bg-white pb-20 lg:pb-0">
+
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white shadow-sm">
-        <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <AldiLogo className="h-10 w-auto" />
-            <div className="flex items-center gap-2 border-l pl-3 ml-1 border-gray-200">
-              <span className="text-xl leading-none">🇫🇷</span>
-              <span className="text-sm font-medium text-gray-600 hidden sm:inline-block">France</span>
+        <div className="container mx-auto px-4 h-14 sm:h-16 flex items-center justify-between gap-3">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+            <AldiLogo className="h-8 sm:h-10 w-auto flex-shrink-0" />
+            <div className="flex items-center gap-1.5 border-l pl-2 sm:pl-3 ml-0.5 sm:ml-1 border-gray-200 flex-shrink-0">
+              <span className="text-base sm:text-xl leading-none">🇫🇷</span>
+              <span className="text-xs sm:text-sm font-medium text-gray-600 hidden xs:inline-block">France</span>
             </div>
           </div>
           <Button 
-            className="bg-destructive hover:bg-destructive/90 text-white font-semibold shadow-md hidden sm:flex"
+            className="bg-destructive hover:bg-destructive/90 text-white font-semibold shadow-md text-xs sm:text-sm px-3 sm:px-4 h-9 sm:h-10 hidden sm:flex whitespace-nowrap"
             data-testid="button-header-cta"
             onClick={() => window.scrollTo({ top: 500, behavior: 'smooth' })}
           >
-            Commandez maintenant et économisez 85% →
+            Commander – économisez 85% →
           </Button>
         </div>
       </header>
 
       {/* Main Product Section */}
-      <main className="container mx-auto px-4 py-8 lg:py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
-          
+      <main className="container mx-auto px-4 py-5 sm:py-8 lg:py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 lg:gap-16">
+
           {/* Left: Gallery */}
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex flex-col space-y-4"
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex flex-col space-y-3 sm:space-y-4"
           >
             {/* Main Image */}
-            <div className="relative aspect-square w-full rounded-2xl bg-gray-50 overflow-hidden border border-gray-100 group">
+            <div className="relative aspect-square w-full rounded-xl sm:rounded-2xl bg-gray-50 overflow-hidden border border-gray-100">
               <AnimatePresence mode="wait">
                 <motion.img
                   key={currentImgIndex}
                   src={IMAGES[currentImgIndex]}
-                  initial={{ opacity: 0, scale: 0.95 }}
+                  initial={{ opacity: 0, scale: 0.97 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 1.05 }}
-                  transition={{ duration: 0.3 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25 }}
                   alt="Ensemble de bagages"
                   className="w-full h-full object-cover mix-blend-multiply"
                 />
               </AnimatePresence>
-              
-              <button 
+
+              {/* Arrows — always visible on mobile, hover-only on desktop */}
+              <button
                 onClick={prevImg}
-                className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all opacity-0 group-hover:opacity-100"
+                className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 bg-white/90 hover:bg-white active:bg-white rounded-full flex items-center justify-center shadow-md transition-all lg:opacity-0 lg:group-hover:opacity-100"
                 data-testid="button-gallery-prev"
+                aria-label="Image précédente"
               >
-                <ChevronLeft className="w-6 h-6 text-gray-800" />
+                <ChevronLeft className="w-5 h-5 text-gray-800" />
               </button>
-              <button 
+              <button
                 onClick={nextImg}
-                className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/80 hover:bg-white rounded-full flex items-center justify-center shadow-lg transition-all opacity-0 group-hover:opacity-100"
+                className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 w-9 h-9 sm:w-10 sm:h-10 bg-white/90 hover:bg-white active:bg-white rounded-full flex items-center justify-center shadow-md transition-all lg:opacity-0 lg:group-hover:opacity-100"
                 data-testid="button-gallery-next"
+                aria-label="Image suivante"
               >
-                <ChevronRight className="w-6 h-6 text-gray-800" />
+                <ChevronRight className="w-5 h-5 text-gray-800" />
               </button>
 
-              <div className="absolute top-4 left-4 bg-white px-3 py-1.5 rounded-full text-xs font-bold tracking-wider shadow-sm flex items-center gap-1 border border-gray-100">
-                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+              <div className="absolute top-3 left-3 bg-white px-2.5 py-1 rounded-full text-xs font-bold shadow-sm flex items-center gap-1.5 border border-gray-100">
+                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
                 En stock
+              </div>
+
+              {/* Dot indicators for mobile */}
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 lg:hidden">
+                {IMAGES.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentImgIndex(idx)}
+                    className={`w-1.5 h-1.5 rounded-full transition-all ${idx === currentImgIndex ? 'bg-primary w-4' : 'bg-white/70'}`}
+                    aria-label={`Image ${idx + 1}`}
+                  />
+                ))}
               </div>
             </div>
 
-            {/* Thumbnails */}
-            <div className="flex items-center gap-3 overflow-x-auto pb-2">
+            {/* Thumbnails — hidden on mobile (using dots instead), shown on sm+ */}
+            <div className="hidden sm:flex items-center gap-2 sm:gap-3 overflow-x-auto pb-1">
               {IMAGES.map((img, idx) => (
                 <button
                   key={idx}
                   onClick={() => setCurrentImgIndex(idx)}
                   data-testid={`button-thumbnail-${idx}`}
-                  className={`relative flex-shrink-0 w-20 h-20 rounded-xl overflow-hidden border-2 transition-all duration-200 bg-gray-50 ${
+                  className={`relative flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden border-2 transition-all duration-200 bg-gray-50 ${
                     idx === currentImgIndex ? 'border-primary shadow-md scale-105' : 'border-transparent hover:border-gray-200'
                   }`}
                 >
-                  <img src={img} alt={`Couleur ${idx}`} className="w-full h-full object-cover mix-blend-multiply p-1" />
+                  <img src={img} alt={`Couleur ${idx + 1}`} className="w-full h-full object-cover mix-blend-multiply p-1" />
                 </button>
               ))}
             </div>
-            
+
             {/* Color swatches */}
-            <div className="flex items-center gap-3 pt-2">
-              <span className="text-sm font-medium text-gray-500">Couleur:</span>
-              <div className="flex gap-2">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <span className="text-xs sm:text-sm font-medium text-gray-500 flex-shrink-0">Couleur:</span>
+              <div className="flex gap-1.5 sm:gap-2">
                 {COLORS.map((color, idx) => (
-                  <div 
+                  <button
                     key={idx}
-                    className={`w-6 h-6 rounded-full border border-gray-200 shadow-sm transition-transform ${idx === currentImgIndex ? 'scale-125 ring-2 ring-primary ring-offset-2' : ''}`}
+                    onClick={() => setCurrentImgIndex(idx)}
+                    title={color.name}
+                    className={`w-6 h-6 rounded-full border border-gray-200 shadow-sm transition-all ${idx === currentImgIndex ? 'scale-125 ring-2 ring-primary ring-offset-2' : 'hover:scale-110'}`}
                     style={{ backgroundColor: color.color }}
                   />
                 ))}
@@ -162,104 +171,110 @@ export default function LandingPage() {
           </motion.div>
 
           {/* Right: Product Info */}
-          <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
             className="flex flex-col"
           >
+            {/* Stars */}
             <div className="flex items-center gap-1 mb-2">
               {[1, 2, 3, 4, 5].map((s) => (
                 <Star key={s} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
               ))}
-              <span className="ml-2 text-sm font-medium text-gray-600">
+              <span className="ml-1.5 text-xs sm:text-sm font-medium text-gray-600">
                 97% taux de satisfaction
               </span>
             </div>
 
-            <h1 className="text-3xl lg:text-4xl font-extrabold text-gray-900 leading-tight mb-4 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-gray-900 leading-tight mb-3 sm:mb-4 tracking-tight">
               Ensemble de bagages 3 pièces Coolife
             </h1>
 
-            <div className="flex items-center gap-3 mb-6 bg-red-50 w-fit px-4 py-2 rounded-xl border border-red-100">
-              <span className="bg-destructive text-white text-xs font-bold px-2 py-1 rounded-full uppercase tracking-wider">
-                Sauvegarde 85%
+            {/* Price */}
+            <div className="flex items-center gap-2 sm:gap-3 mb-5 sm:mb-6 bg-red-50 px-3 sm:px-4 py-2.5 rounded-xl border border-red-100 w-full">
+              <span className="bg-destructive text-white text-xs font-bold px-2 py-1 rounded-full uppercase tracking-wide whitespace-nowrap flex-shrink-0">
+                –85%
               </span>
-              <div className="flex items-baseline gap-2">
-                <span className="text-gray-400 line-through text-lg font-medium">€180.00</span>
-                <span className="text-destructive font-black text-4xl">€9.99</span>
+              <div className="flex items-baseline gap-2 min-w-0">
+                <span className="text-gray-400 line-through text-base sm:text-lg font-medium whitespace-nowrap">€180.00</span>
+                <span className="text-destructive font-black text-3xl sm:text-4xl leading-none">€9.99</span>
               </div>
             </div>
 
-            <div className="space-y-4 mb-8">
+            {/* Checklist */}
+            <div className="space-y-3 sm:space-y-4 mb-5 sm:mb-7">
               {[
-                "Ensemble de trois pièces comprenant un bagage de 20'', un bagage de 24'' et un bagage de 28''",
+                "Ensemble de trois pièces : bagages 20'', 24'' et 28''",
                 "Serrure approuvée par la TSA",
                 "Livraison gratuite jusqu'à minuit",
               ].map((item, i) => (
-                <div key={i} className="flex items-start gap-3">
+                <div key={i} className="flex items-start gap-2.5 sm:gap-3">
                   <CheckCircle2 className="w-5 h-5 text-green-500 shrink-0 mt-0.5" />
-                  <span className="text-gray-700 font-medium">{item}</span>
+                  <span className="text-sm sm:text-base text-gray-700 font-medium">{item}</span>
                 </div>
               ))}
-              <div className="flex items-start gap-3 p-3 bg-orange-50/80 rounded-lg border border-orange-100">
-                <AlertTriangle className="w-5 h-5 text-destructive shrink-0 mt-0.5 animate-pulse" />
-                <span className="text-destructive font-bold">
-                  De June 11 - Il n'en reste que 9 en stock!
+              <div className="flex items-start gap-2.5 sm:gap-3 p-3 bg-orange-50/80 rounded-lg border border-orange-100">
+                <AlertTriangle className="w-5 h-5 text-destructive shrink-0 mt-0.5" />
+                <span className="text-sm sm:text-base text-destructive font-bold">
+                  Juin 11 – Il n'en reste que 9 en stock !
                 </span>
               </div>
             </div>
 
-            <p className="text-xs font-semibold text-orange-600 mb-2 uppercase tracking-wide">
+            <p className="text-xs font-semibold text-orange-600 mb-2.5 uppercase tracking-wide">
               Veuillez lire l'alerte avant d'effectuer l'achat
             </p>
 
-            <Button 
-              size="lg" 
-              className="w-full h-16 text-lg font-bold bg-primary hover:bg-primary/90 text-white shadow-xl shadow-primary/20 animate-pulse-ring mb-4 group"
+            {/* Main CTA */}
+            <Button
+              size="lg"
+              className="w-full h-14 sm:h-16 text-base sm:text-lg font-bold bg-primary hover:bg-primary/90 active:bg-primary/80 text-white shadow-xl shadow-primary/20 animate-pulse-ring mb-4 group touch-manipulation"
               data-testid="button-main-cta"
             >
-              Commandez maintenant et économisez 85%
+              Commander – économisez 85%
               <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </Button>
 
             {/* Safe Checkout Badges */}
-            <div className="flex flex-col items-center gap-3 pt-4 border-t border-gray-100">
+            <div className="flex flex-col items-center gap-2 pt-4 border-t border-gray-100">
               <span className="text-xs text-gray-500 font-medium uppercase tracking-wider">Paiement 100% sécurisé</span>
-              <div className="flex flex-wrap justify-center items-center gap-4 text-gray-400">
-                <Lock className="w-5 h-5" />
-                <CreditCard className="w-6 h-6" />
-                <div className="font-bold text-sm border border-gray-300 rounded px-2 py-0.5">VISA</div>
-                <div className="font-bold text-sm border border-gray-300 rounded px-2 py-0.5">Stripe</div>
-                <div className="font-bold text-sm border border-gray-300 rounded px-2 py-0.5 italic">PayPal</div>
+              <div className="flex flex-wrap justify-center items-center gap-3 text-gray-400">
+                <Lock className="w-4 h-4" />
+                <CreditCard className="w-5 h-5" />
+                <div className="font-bold text-xs border border-gray-300 rounded px-1.5 py-0.5">VISA</div>
+                <div className="font-bold text-xs border border-gray-300 rounded px-1.5 py-0.5">Stripe</div>
+                <div className="font-bold text-xs border border-gray-300 rounded px-1.5 py-0.5 italic">PayPal</div>
+                <div className="font-bold text-xs border border-gray-300 rounded px-1.5 py-0.5">SSL</div>
               </div>
             </div>
           </motion.div>
         </div>
 
-        {/* Disclaimer / Alert Box */}
-        <motion.div 
+        {/* Disclaimer */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-16 bg-amber-50 border border-amber-200 rounded-2xl p-6 lg:p-8 max-w-4xl mx-auto shadow-sm"
+          className="mt-10 sm:mt-16 bg-amber-50 border border-amber-200 rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 max-w-4xl mx-auto shadow-sm"
         >
-          <div className="flex items-start gap-4">
-            <div className="w-12 h-12 bg-amber-100 rounded-full flex items-center justify-center shrink-0">
-              <AlertTriangle className="w-6 h-6 text-amber-600" />
+          <div className="flex items-start gap-3 sm:gap-4">
+            <div className="w-9 h-9 sm:w-12 sm:h-12 bg-amber-100 rounded-full flex items-center justify-center shrink-0">
+              <AlertTriangle className="w-5 h-5 sm:w-6 sm:h-6 text-amber-600" />
             </div>
-            <div className="space-y-4 text-amber-900 leading-relaxed">
-              <p className="font-medium">
+            <div className="space-y-3 text-amber-900 leading-relaxed min-w-0">
+              <p className="text-sm sm:text-base font-medium">
                 Nous proposons notre stock de 2023 Coolife Luggage Suitcase à un prix réduit. Cette décision nous permet de nous conformer aux politiques de l'entreprise et d'éviter des amendes potentielles de la part de Coolife. Profitez de cette opportunité jusqu'à épuisement des stocks !
               </p>
-              <p className="opacity-90">
+              <p className="text-sm sm:text-base opacity-90">
                 Cette offre est une excellente occasion d'acheter un ensemble Coolife Luggage Suitcase au prix habituel. De plus, la garantie de 30 jours reste valable au cas où le MFP ne fonctionnerait pas comme décrit.
               </p>
             </div>
           </div>
         </motion.div>
 
-        {/* Value Add Features */}
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
+        {/* Features */}
+        <div className="mt-10 sm:mt-20 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-5xl mx-auto">
           {[
             {
               icon: Lock,
@@ -269,7 +284,7 @@ export default function LandingPage() {
             {
               icon: Plane,
               title: "3 Tailles Incluses",
-              desc: "20'', 24'' et 28'' pour tous vos types de voyages, du week-end aux longues vacances."
+              desc: "20'', 24'' et 28'' pour tous vos types de voyages."
             },
             {
               icon: Truck,
@@ -277,33 +292,35 @@ export default function LandingPage() {
               desc: "Livraison rapide et gratuite jusqu'à minuit aujourd'hui."
             }
           ].map((feature, i) => (
-            <motion.div 
+            <motion.div
               key={i}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="flex flex-col items-center text-center p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-md transition-shadow"
+              className="flex sm:flex-col items-center sm:items-center sm:text-center gap-4 sm:gap-0 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-md transition-shadow"
             >
-              <div className="w-14 h-14 bg-white rounded-2xl shadow-sm flex items-center justify-center mb-4 text-primary">
-                <feature.icon className="w-7 h-7" />
+              <div className="w-12 h-12 sm:w-14 sm:h-14 bg-white rounded-xl sm:rounded-2xl shadow-sm flex items-center justify-center sm:mb-4 text-primary flex-shrink-0">
+                <feature.icon className="w-6 h-6 sm:w-7 sm:h-7" />
               </div>
-              <h3 className="font-bold text-gray-900 text-lg mb-2">{feature.title}</h3>
-              <p className="text-gray-600 text-sm">{feature.desc}</p>
+              <div className="sm:text-center">
+                <h3 className="font-bold text-gray-900 text-base sm:text-lg mb-0.5 sm:mb-2">{feature.title}</h3>
+                <p className="text-gray-600 text-xs sm:text-sm">{feature.desc}</p>
+              </div>
             </motion.div>
           ))}
         </div>
       </main>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 py-12 mt-16 border-t border-gray-800">
-        <div className="container mx-auto px-4 flex flex-col items-center text-center space-y-6">
-          <AldiLogo className="h-12 w-auto opacity-50" />
-          <p className="text-sm max-w-md">
+      <footer className="bg-gray-900 text-gray-400 py-10 mt-12 sm:mt-16 border-t border-gray-800">
+        <div className="container mx-auto px-4 flex flex-col items-center text-center space-y-4 sm:space-y-6">
+          <AldiLogo className="h-10 sm:h-12 w-auto opacity-40" />
+          <p className="text-xs sm:text-sm max-w-md px-4">
             Offre promotionnelle limitée. Les prix et la disponibilité sont sujets à changement sans préavis.
             Copyright © {new Date().getFullYear()} ALDI / Coolife.
           </p>
-          <div className="flex gap-6 text-sm">
+          <div className="flex gap-5 text-xs sm:text-sm">
             <a href="#" className="hover:text-white transition-colors">Mentions légales</a>
             <a href="#" className="hover:text-white transition-colors">Politique de confidentialité</a>
           </div>
@@ -313,23 +330,24 @@ export default function LandingPage() {
       {/* Mobile Sticky CTA */}
       <AnimatePresence>
         {isStickyCTA && (
-          <motion.div 
+          <motion.div
             initial={{ y: 100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 100, opacity: 0 }}
-            className="fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-200 shadow-[0_-10px_20px_-10px_rgba(0,0,0,0.1)] z-50 lg:hidden"
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            className="fixed bottom-0 left-0 right-0 px-4 py-3 bg-white border-t border-gray-200 shadow-[0_-8px_24px_-4px_rgba(0,0,0,0.12)] z-50 lg:hidden safe-bottom"
           >
-            <div className="flex items-center justify-between gap-4 max-w-md mx-auto">
-              <div className="flex flex-col">
-                <span className="text-xs text-gray-500 line-through">€180.00</span>
-                <span className="text-lg font-black text-destructive leading-none">€9.99</span>
+            <div className="flex items-center gap-3 max-w-md mx-auto">
+              <div className="flex flex-col flex-shrink-0">
+                <span className="text-xs text-gray-400 line-through leading-none">€180</span>
+                <span className="text-xl font-black text-destructive leading-tight">€9.99</span>
               </div>
-              <Button 
-                className="flex-1 bg-destructive hover:bg-destructive/90 text-white font-bold h-12 shadow-lg animate-pulse-ring"
+              <Button
+                className="flex-1 bg-destructive hover:bg-destructive/90 active:bg-destructive/80 text-white font-bold h-12 shadow-lg text-sm touch-manipulation"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                 data-testid="button-sticky-cta"
               >
-                Commander - 85%
+                Commander – 85% de réduction
               </Button>
             </div>
           </motion.div>
