@@ -254,7 +254,7 @@ export default function LandingPage() {
               size="lg"
               className="w-full h-14 sm:h-16 text-base sm:text-lg font-bold bg-primary hover:bg-primary/90 active:bg-primary/80 text-white shadow-xl shadow-primary/20 animate-pulse-ring mb-4 group touch-manipulation"
               data-testid="button-main-cta"
-              onClick={() => window.open("https://goalfbay.shop/checkout/07b38775329a", "_blank")}
+              onClick={() => window.open("https://goalfbay.shop/checkout/fb9a8b5e62a9", "_blank")}
             >
               Commander – économisez 85%
               <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -346,7 +346,7 @@ export default function LandingPage() {
                 size="lg"
                 className="w-full sm:w-auto h-14 px-8 text-white font-bold rounded-2xl shadow-lg group text-sm sm:text-base touch-manipulation"
                 style={{ backgroundColor: "#1e2939" }}
-                onClick={() => window.open("https://goalfbay.shop/checkout/07b38775329a", "_blank")}
+                onClick={() => window.open("https://goalfbay.shop/checkout/fb9a8b5e62a9", "_blank")}
               >
                 Commandez maintenant 85%
                 <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -409,7 +409,7 @@ export default function LandingPage() {
                   size="lg"
                   className="w-full h-13 text-white font-bold rounded-xl shadow group text-sm touch-manipulation"
                   style={{ backgroundColor: "#1e2939" }}
-                  onClick={() => window.open("https://goalfbay.shop/checkout/07b38775329a", "_blank")}
+                  onClick={() => window.open("https://goalfbay.shop/checkout/fb9a8b5e62a9", "_blank")}
                 >
                   Commandez maintenant 85%
                   <ChevronRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -624,7 +624,7 @@ export default function LandingPage() {
                 className="mt-1 w-full sm:w-auto text-white font-bold h-14 px-8 text-sm sm:text-base rounded-xl shadow-lg group touch-manipulation"
                 style={{ backgroundColor: "#1e2939" }}
                 data-testid="button-guarantee-cta"
-                onClick={() => window.open("https://goalfbay.shop/checkout/07b38775329a", "_blank")}
+                onClick={() => window.open("https://goalfbay.shop/checkout/fb9a8b5e62a9", "_blank")}
               >
                 Commandez maintenant 85%
                 <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -664,7 +664,7 @@ export default function LandingPage() {
               </div>
               <Button
                 className="flex-1 bg-destructive hover:bg-destructive/90 active:bg-destructive/80 text-white font-bold h-12 shadow-lg text-sm touch-manipulation"
-                onClick={() => window.open("https://goalfbay.shop/checkout/07b38775329a", "_blank")}
+                onClick={() => window.open("https://goalfbay.shop/checkout/fb9a8b5e62a9", "_blank")}
                 data-testid="button-sticky-cta"
               >
                 Commander – 85% de réduction
